@@ -1,5 +1,6 @@
 package com.example.ejemplointent2
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
@@ -14,7 +15,8 @@ class FifthActivity : AppCompatActivity() {
     lateinit var nombreCliente:EditText
     lateinit var telefonoCliente: EditText
     lateinit var direccionCliente: EditText
-    lateinit var btnEnviar: Button
+    lateinit var enviar: Button
+    lateinit var atras: Button
 
     // creating a variable for our
     // Firebase Database.
@@ -48,10 +50,11 @@ class FifthActivity : AppCompatActivity() {
         // initializing our object
         // class variable.
         cli = Cliente()
-        btnEnviar = findViewById<Button>(R.id.btnEnviar)
+        enviar = findViewById<Button>(R.id.btnEnviar)
+        atras = findViewById<Button>(R.id.btnAtrasFifth)
 
         // adding on click listener for our button.
-        btnEnviar!!.setOnClickListener {
+        enviar!!.setOnClickListener {
             // getting text from our edittext fields.
             var name: String = nombreCliente.text.toString()
             var phone: String = telefonoCliente.text.toString()
@@ -68,6 +71,11 @@ class FifthActivity : AppCompatActivity() {
                 // data to our database.
                 addDatatoFirebase(name, address, phone)
             }
+        }
+
+        atras.setOnClickListener{
+            val intentThird = Intent(this, ThirdActivity::class.java)
+            startActivity(intentThird)
         }
     }
 
