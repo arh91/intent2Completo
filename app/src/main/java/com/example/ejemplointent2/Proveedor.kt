@@ -2,6 +2,16 @@ package com.example.ejemplointent2
 
 class Proveedor {
 
+    var codigo: String? = null
+        get() {
+            //Llamada al getter de codigo
+            return field
+        }
+        set(nuevoCodigo) {
+            //Llamada al setter de codigo
+            field = nuevoCodigo
+        }
+
     var nombre: String? = null
         get() {
             //Llamada al getter de nombre
@@ -35,5 +45,18 @@ class Proveedor {
             //Llamada al setter de telefono
             field = nuevoTelefono
         }
+
+
+
+    //Constructores
+
+    constructor(codigo: String?, nombre: String?, direccion: String?, telefono: String?) {
+        this.codigo = codigo
+        this.nombre = nombre
+        this.direccion = direccion
+        this.telefono = telefono
+    }
+
+    constructor() {}
 
 }

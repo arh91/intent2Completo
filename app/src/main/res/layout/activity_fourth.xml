@@ -6,67 +6,94 @@
     android:layout_height="match_parent"
     tools:context=".FourthActivity">
 
-    <!--<EditText
-        android:id="@+id/editTextCodigo"
+    <EditText
+        android:id="@+id/edtCodigoProveedor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="34dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Código"
-        tools:layout_editor_absoluteX="89dp"
-        tools:layout_editor_absoluteY="107dp" />-->
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tituloFourth" />
 
     <EditText
         android:id="@+id/edtNombreProveedor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Nombre"
-        tools:layout_editor_absoluteX="87dp"
-        tools:layout_editor_absoluteY="180dp" />
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/edtCodigoProveedor"
+        app:layout_constraintTop_toBottomOf="@+id/edtCodigoProveedor" />
 
     <EditText
         android:id="@+id/edtDireccionProveedor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="40dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Dirección"
-        tools:layout_editor_absoluteX="89dp"
-        tools:layout_editor_absoluteY="283dp" />
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/edtNombreProveedor"
+        app:layout_constraintTop_toBottomOf="@+id/edtNombreProveedor" />
 
     <EditText
         android:id="@+id/edtTelefonoProveedor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="40dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Teléfono"
-        tools:layout_editor_absoluteX="93dp"
-        tools:layout_editor_absoluteY="387dp" />
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/edtDireccionProveedor"
+        app:layout_constraintTop_toBottomOf="@+id/edtDireccionProveedor" />
 
     <Button
-        android:id="@+id/btnEnviar"
+        android:id="@+id/btnEnviarProveedor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginBottom="124dp"
         android:text="Enviar"
-        tools:layout_editor_absoluteX="150dp"
-        tools:layout_editor_absoluteY="577dp" />
-
-    <Button
-        android:id="@+id/btnOpcionesFourth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Más opciones"
-        tools:layout_editor_absoluteX="55dp"
-        tools:layout_editor_absoluteY="639dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnAtrasFourth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="68dp"
+        android:layout_marginBottom="124dp"
         android:text="Atrás"
-        tools:layout_editor_absoluteX="259dp"
-        tools:layout_editor_absoluteY="638dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tituloFourth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="27dp"
+        android:text="NUEVO PROVEEDOR"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/edtCodigoProveedor"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnOpcionesProveedor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="38dp"
+        android:text="MÁS OPCIONES"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

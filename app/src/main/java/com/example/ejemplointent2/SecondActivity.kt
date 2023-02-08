@@ -1,12 +1,14 @@
-package com.dam2.ejemplosintent
+package com.example.ejemplointent2
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ejemplointent2.R
+import com.example.ejemplointent2.ThirdActivity
 
 class SecondActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,5 +45,7 @@ class SecondActivity : AppCompatActivity() {
         btnGoFirst.setOnClickListener{
             finish()
         }
+
+
     }
 }

@@ -31,7 +31,8 @@ class SixthActivity : AppCompatActivity() {
         eliminarProveedor = findViewById<Button>(R.id.btnEliminarProveedor)
         modificarProveedor = findViewById<Button>(R.id.btnModificarProveedor)
         ok = findViewById<Button>(R.id.btnOkSeventh)
-        atras = findViewById<Button>(R.id.btnAtrásSeventh)
+        atras = findViewById<Button>(R.id.btnAtrásSixth)
+
 
         buscarProveedor.setOnClickListener{
 

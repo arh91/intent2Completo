@@ -10,100 +10,116 @@ import android.widget.Toast
 import com.google.firebase.database.*
 
 class FifthActivity : AppCompatActivity() {
-    // creating variables for
-    // EditText and buttons.
+
+    // Creamos variables para editText y Buttons
+    lateinit var codigoCliente:EditText
     lateinit var nombreCliente:EditText
     lateinit var telefonoCliente: EditText
     lateinit var direccionCliente: EditText
-    lateinit var enviar: Button
-    lateinit var atras: Button
 
-    // creating a variable for our
-    // Firebase Database.
+    lateinit var insertarDatos: Button
+    lateinit var atras: Button
+    lateinit var masOpciones: Button
+
     lateinit var firebaseDatabase: FirebaseDatabase
 
-    // creating a variable for our Database
-    // Reference for Firebase.
+    //Creamos variable para referenciar nuestra base de datos
     lateinit var databaseReference: DatabaseReference
-
-    // creating a variable for
-    // our object class
-    lateinit var cli: Cliente
 
 
     protected override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fifth)
 
-        // initializing our edittext and button
+        //Inicializamos variables para identificar los editText y Buttons del layout
+        codigoCliente = findViewById<EditText>(R.id.edtCodigoCliente)
         nombreCliente = findViewById<EditText>(R.id.edtNombreCliente)
         telefonoCliente = findViewById<EditText>(R.id.edtTelefonoCliente)
         direccionCliente = findViewById<EditText>(R.id.edtDireccionCliente)
 
-        // below line is used to get the
-        // instance of our FIrebase database.
+        insertarDatos = findViewById<Button>(R.id.btnEnviarCliente)
+        atras = findViewById<Button>(R.id.btnAtrasFifth)
+        masOpciones = findViewById<Button>(R.id.btnOpcionesCliente)
+
+
         firebaseDatabase = FirebaseDatabase.getInstance()
 
-        // below line is used to get reference for our database.
-        databaseReference = firebaseDatabase!!.getReference("Clientes")
+        // Obtenemos la referencia a nuestra base de datos en Firebase
+        databaseReference = firebaseDatabase!!.getReference("MyDatabase")
 
-        // initializing our object
-        // class variable.
-        cli = Cliente()
-        enviar = findViewById<Button>(R.id.btnEnviar)
-        atras = findViewById<Button>(R.id.btnAtrasFifth)
 
-        // adding on click listener for our button.
-        enviar!!.setOnClickListener {
-            // getting text from our edittext fields.
+        //Añadimos evento al botón insertarDatos
+
+        insertarDatos.setOnClickListener {
+            // Capturamos cadenas introducidas por usuario y las almacenamos en variables
+            var code: String = codigoCliente.text.toString()
             var name: String = nombreCliente.text.toString()
             var phone: String = telefonoCliente.text.toString()
             var address: String = direccionCliente.text.toString()
 
-            // below line is for checking weather the
-            // edittext fields are empty or not.
-            if (TextUtils.isEmpty(name) && TextUtils.isEmpty(phone) && TextUtils.isEmpty(address)) {
-                // if the text fields are empty
-                // then show the below message.
-                Toast.makeText(this@FifthActivity, "Please add some data.", Toast.LENGTH_SHORT).show()
+            // Si alguno de los campos está sin rellenar, lanzamos aviso al usuario para que los rellene todos.
+            if (TextUtils.isEmpty(code) || TextUtils.isEmpty(name) || TextUtils.isEmpty(phone) || TextUtils.isEmpty(address)) {
+                Toast.makeText(this@FifthActivity, "Por favor, rellena todos los campos.", Toast.LENGTH_SHORT).show()
             } else {
-                // else call the method to add
-                // data to our database.
-                addDatatoFirebase(name, address, phone)
+                //En caso contrario, llamamos al método que añadirá los datos introducidos a Firebase, y posteriormente dejamos en blanco otra vez todos los campos
+                addDatatoFirebase(code, name, address, phone)
+                clearFields()
             }
         }
 
+
+        //Añadimos evento al boton masOpciones
+
+        masOpciones.setOnClickListener(){
+            val toSeventh = Intent(this, SeventhActivity::class.java)
+            startActivity(toSeventh)
+        }
+
+
+        //Añadimos evento al botón atras
+
         atras.setOnClickListener{
-            val intentThird = Intent(this, ThirdActivity::class.java)
-            startActivity(intentThird)
+            val toThird = Intent(this, ThirdActivity::class.java)
+            startActivity(toThird)
         }
     }
 
-    private fun addDatatoFirebase(name: String, address: String, phone: String) {
-        // below 3 lines of code is used to set
-        // data in our object class.
-        cli.nombre = name
-        cli.direccion = address
-        cli.telefono = phone
 
-        // we are use add value event listener method
-        // which is called with database reference.
-        databaseReference.addValueEventListener(object : ValueEventListener {
+    private fun addDatatoFirebase(code: String, name: String, address: String, phone: String) {
+
+        //Creamos un objeto de nuestra clase Cliente al que le pasamos las 4 cadenas introducidas por el usuario en los editText
+        val cliente = Cliente(code, name, address, phone)
+
+
+        // Ahora comprobamos si el código introducido por el usuario ya está registrado en nuestra base de datos o no
+
+        databaseReference.child("Clientes").orderByChild("codigo").equalTo(code).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                // inside the method of on Data change we are setting
-                // our object class to our database reference.
-                // data base reference will sends data to firebase.
-                databaseReference.setValue(cli)
 
-                // after adding this data we are showing toast message.
-                Toast.makeText(this@FifthActivity, "data added", Toast.LENGTH_SHORT).show()
+                //Si el código ya está registrado, lanzamos un aviso al usuario para que pruebe con otro distinto
+                if(snapshot.exists()){
+                    Toast.makeText(this@FifthActivity, "El código introducido ya existe.", Toast.LENGTH_SHORT).show()
+                }else {
+                    //En caso contrario, la aplicación registrará el nuevo objeto cliente en la tabla Clientes de nuestra base de datos
+                    databaseReference.child("Clientes").child(code).setValue(cliente)
+
+                    // Avisamos al usuario que los datos se han guardado correctamente
+                    Toast.makeText(this@FifthActivity, "Datos guardados.", Toast.LENGTH_SHORT).show()
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
-                // if the data is not added or it is cancelled then
-                // we are displaying a failure toast message.
-                Toast.makeText(this@FifthActivity, "Fail to add data $error", Toast.LENGTH_SHORT).show()
+                // Si los datos no se han podido guardar correctamente, lanzamos aviso al usuario
+                Toast.makeText(this@FifthActivity, "No se pudieron guardar los datos. $error", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    //Método que vuelve a dejar en blanco todos los campos del layout
+    fun clearFields(){
+       codigoCliente.setText("")
+       nombreCliente.setText("")
+       direccionCliente.setText("")
+       telefonoCliente.setText("")
     }
 }

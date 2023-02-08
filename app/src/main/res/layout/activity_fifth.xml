@@ -6,68 +6,96 @@
     android:layout_height="match_parent"
     tools:context=".FifthActivity">
 
-    <!--<EditText
-        android:id="@+id/editTextCodigo"
+    <EditText
+        android:id="@+id/edtCodigoCliente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Código"
-        tools:layout_editor_absoluteX="89dp"
-        tools:layout_editor_absoluteY="107dp" />-->
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/edtNombreCliente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Nombre"
-        tools:layout_editor_absoluteX="87dp"
-        tools:layout_editor_absoluteY="180dp" />
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/edtCodigoCliente"
+        app:layout_constraintTop_toBottomOf="@+id/edtCodigoCliente" />
 
     <EditText
         android:id="@+id/edtDireccionCliente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="40dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Dirección"
-        tools:layout_editor_absoluteX="89dp"
-        tools:layout_editor_absoluteY="283dp" />
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/edtNombreCliente"
+        app:layout_constraintTop_toBottomOf="@+id/edtNombreCliente" />
 
     <EditText
         android:id="@+id/edtTelefonoCliente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="40dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Teléfono"
-        tools:layout_editor_absoluteX="93dp"
-        tools:layout_editor_absoluteY="387dp" />
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/edtDireccionCliente"
+        app:layout_constraintTop_toBottomOf="@+id/edtDireccionCliente" />
 
     <Button
         android:id="@+id/btnEnviarCliente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginBottom="124dp"
         android:text="Enviar"
-        tools:layout_editor_absoluteX="150dp"
-        tools:layout_editor_absoluteY="577dp" />
-
-    <Button
-        android:id="@+id/btnOpcionesFifth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Más opciones"
-        tools:layout_editor_absoluteX="55dp"
-        tools:layout_editor_absoluteY="639dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnAtrasFifth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="68dp"
+        android:layout_marginBottom="124dp"
         android:text="Atrás"
-        tools:layout_editor_absoluteX="259dp"
-        tools:layout_editor_absoluteY="638dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btnOpcionesCliente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="38dp"
+        android:text="MÁS OPCIONES"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tituloFifth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="27dp"
+        android:text="NUEVO CLIENTE"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/edtCodigoCliente"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

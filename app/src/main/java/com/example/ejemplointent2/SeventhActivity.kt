@@ -34,6 +34,7 @@ class SeventhActivity : AppCompatActivity() {
         ok = findViewById<Button>(R.id.btnOkSeventh)
         atras = findViewById<Button>(R.id.btnAtrásSeventh)
 
+
         buscarCliente.setOnClickListener{
 
         }

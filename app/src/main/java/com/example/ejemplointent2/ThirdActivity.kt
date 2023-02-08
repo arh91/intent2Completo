@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import com.dam2.ejemplosintent.MainActivity
 
 class ThirdActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,8 +25,8 @@ class ThirdActivity : AppCompatActivity() {
         }
 
         atras.setOnClickListener{
-            val intentMain = Intent(this, MainActivity::class.java)
-            startActivity(intentMain)
+            val toMain = Intent(this, MainActivity::class.java)
+            startActivity(toMain)
         }
     }
 }
