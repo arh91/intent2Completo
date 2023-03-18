@@ -25,7 +25,8 @@ class MainActivity : AppCompatActivity() {
 
         gosecond.setOnClickListener{
             // Crea un Intent para iniciar la segunda actividad
-            val intent = Intent(this, SecondActivity::class.java)
+
+
 
 // Añade datos adicionales al Intent
             intent.putExtra("proveedor", "Castelao")

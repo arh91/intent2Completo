@@ -70,7 +70,7 @@ class FourthActivity : AppCompatActivity() {
 
         //Añadimos evento al botón opcionesProveedor
 
-        masOpciones.setOnClickListener(){
+        masOpciones.setOnClickListener{
             val toSixth = Intent(this, SixthActivity::class.java)
             startActivity(toSixth)
         }
